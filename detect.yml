@@ -5,26 +5,26 @@
     - vars/settings/local/settings.yml
 
   tasks:
-    - name: all cycles
+  #
+  # so MATCH creates a list of paths p of all accounts, where
+  # startAccount is equal to endAccount and the number of hops (TRANSACTIONS) is between 2 and 6
+  # MATCH returns a "pipeline" of matched paths (in our case 4)
+  # RETURN statement produces output for 4 paths
+  #
+    - name: "find all cyclic paths"
       platform42.neo4j.query_read:
         neo4j_uri: "{{ NEO4J_URI }}"
         database: "{{ NEO4J_DATABASE }}"
         username: "{{ NEO4J_USERNAME }}"
         password: "{{ NEO4J_PASSWORD }}"
         query: >
-          MATCH path = (account:Account)-[:TRANSACTION*2..6]->(account)
-          WITH
-            account,
-            path,
-            [accountNode IN nodes(path) | accountNode.id] AS cycleAccounts,
-            length(path) AS hops,
-            reduce(total = 0, transaction IN relationships(path) | total + transaction.amount) AS totalTransferred
+          MATCH p=(account:Account)-[:TRANSACTION*2..6]->(account)
           RETURN
-            account.id AS startAccount,
-            cycleAccounts,
-            hops,
-            totalTransferred
-          ORDER BY totalTransferred DESC;
+            account.entity_name AS startAccount,
+            [x IN nodes(p) | x.entity_name] AS cyclePath,
+            length(p) AS hops,
+            reduce(total = 0, t IN relationships(p) | total + t.amount) AS totalAmount
+          ORDER BY totalAmount DESC;
       register: data
 
     - name: print
