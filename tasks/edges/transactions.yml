@@ -19,7 +19,7 @@
         type: float
       timestamp: 
         value: "{{ item.timestamp }}"
-        type: str
+        type: datetime
   register: transaction
 
 - name: print TRACK relationship stats
