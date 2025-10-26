@@ -1,0 +1,20 @@
+- name: Berlin U-bahn
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/settings/local/settings.yml
+    - vars/vertices/accounts.yml
+    - vars/edges/transactions.yml
+
+  tasks:    
+    - name: cleanup graph database      
+      ansible.builtin.include_tasks: tasks/database/database.yml
+
+    - name: create banking accounts
+      ansible.builtin.include_tasks: tasks/vertices/accounts.yml
+      loop: "{{ accounts }}"
+      
+    - name: create banking transactions
+      ansible.builtin.include_tasks: tasks/edges/transactions.yml
+      loop: "{{ transactions }}"
+      
