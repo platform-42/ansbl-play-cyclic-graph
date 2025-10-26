@@ -1,4 +1,4 @@
-- name: Berlin U-bahn
+- name: Money laundering demo
   hosts: localhost
   gather_facts: false
   vars_files:
