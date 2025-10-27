@@ -10,20 +10,9 @@
     - name: cleanup graph database      
       ansible.builtin.include_tasks: tasks/database/database.yml
 
-    - name: unique key for banking
-      platform42.neo4j.constraint:
-        neo4j_uri: "{{ NEO4J_URI }}"
-        database: "{{ NEO4J_DATABASE }}"
-        username: "{{ NEO4J_USERNAME }}"
-        password: "{{ NEO4J_PASSWORD }}"
-        label: Account
-        property: entity_name
-      register: constraint
-
-    - name: 
-      ansible.builtin.debug:
-        var: constraint      
-
+    - name: add vertex constraints      
+      ansible.builtin.include_tasks: tasks/database/constraints.yml
+  
     - name: create banking accounts
       ansible.builtin.include_tasks: tasks/vertices/accounts.yml
       loop: "{{ accounts }}"
