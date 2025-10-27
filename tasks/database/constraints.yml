@@ -1,5 +1,20 @@
 ---
-- name: unique key on entity_name
+- name: delete unique key on entity_name
+  platform42.neo4j.constraint:
+    neo4j_uri: "{{ NEO4J_URI }}"
+    database: "{{ NEO4J_DATABASE }}"
+    username: "{{ NEO4J_USERNAME }}"
+    password: "{{ NEO4J_PASSWORD }}"
+    label: Account
+    property: entity_name
+    state: ABSENT
+  register: database_constraint_del  
+
+- name: print database_constraint
+  ansible.builtin.debug:
+    var: database_constraint_del.constraint
+
+- name: create unique key on entity_name
   platform42.neo4j.constraint:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
@@ -14,17 +29,3 @@
   ansible.builtin.debug:
     var: database_constraint_add.constraint
 
-- name: unique key on entity_name
-  platform42.neo4j.constraint:
-    neo4j_uri: "{{ NEO4J_URI }}"
-    database: "{{ NEO4J_DATABASE }}"
-    username: "{{ NEO4J_USERNAME }}"
-    password: "{{ NEO4J_PASSWORD }}"
-    label: Account
-    property: entity_name
-    state: ABSENT
-  register: database_constraint_del  
-
-- name: print database_constraint
-  ansible.builtin.debug:
-    var: database_constraint_del.constraint
