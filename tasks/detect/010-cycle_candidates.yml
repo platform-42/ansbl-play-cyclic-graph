@@ -5,7 +5,7 @@
     database: "{{ NEO4J_DATABASE }}"
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
-    query: >
+    query: |
       MATCH p=(account:Account)-[:TRANSACTION*2..6]->(account)
       RETURN
         account.entity_name AS startAccount,
