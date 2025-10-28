@@ -6,9 +6,9 @@
 
   tasks:
     - name: detect cycle_candidates     
-      ansible.builtin.include_tasks: tasks/detect/010-cycle_candidates.yml
+      ansible.builtin.include_tasks: tasks/detect/cycle_candidates/query.yml
 
     - name: detect fast_cycles      
-      ansible.builtin.include_tasks: tasks/detect/020-cycle_fast.yml
+      ansible.builtin.include_tasks: tasks/detect/cycle_fast/loop.yml
 
 

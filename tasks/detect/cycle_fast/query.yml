@@ -1,9 +1,9 @@
 ---
-- name: "output item"
+- name: "Examine cycle path"
   ansible.builtin.debug:
-    var: item
+    var: item.cyclePath
 
-- name: "fast query"
+- name: "Test for quick money turnaround"
   platform42.neo4j.query_read:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
