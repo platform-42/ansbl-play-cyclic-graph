@@ -9,7 +9,7 @@
     database: "{{ NEO4J_DATABASE }}"
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
-    cypher: |
+    query: |
       MATCH p=(a:Account)-[:TRANSACTION*2..6]->(a)
       WHERE a.id IN $nodeIds
       WITH p,
