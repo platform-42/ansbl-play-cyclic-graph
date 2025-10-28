@@ -1,5 +1,5 @@
 ---
-- name: "all cyclic paths"
+- name: "cyclic paths"
   platform42.neo4j.query_read:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"

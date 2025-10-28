@@ -6,19 +6,31 @@
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
     query: |
-      MATCH p=(a:Account)-[:TRANSACTION*2..6]->(a)
+      MATCH p=(a:Account)-[r:TRANSACTION*2..6]->(a)
+      WHERE all(n IN nodes(p) WHERE n.id IN $nodeIds)
       WITH 
         a.id AS startAccount,
         [x IN nodes(p) | x.id] AS cyclePath,
+        [rel IN relationships(p) | datetime(rel.timestamp)] AS times,
         length(p) AS hops,
-        reduce(total=0, r IN relationships(p) | total + r.amount) AS totalAmount
-      RETURN
+        reduce(total=0, rel IN relationships(p) | total + rel.amount) AS totalAmount
+      WITH 
         startAccount,
         cyclePath,
         hops,
-        totalAmount
+        totalAmount,
+        reduce(minT = head(times), t IN times | CASE WHEN t < minT THEN t ELSE minT END) AS minTime,
+        reduce(maxT = head(times), t IN times | CASE WHEN t > maxT THEN t ELSE maxT END) AS maxTime
+      WHERE duration.between(minTime, maxTime).days <= 3
+      RETURN 
+        startAccount,
+        cyclePath,
+        hops,
+        totalAmount,
+        minTime,
+        maxTime,
+        duration.between(minTime, maxTime).days AS durationDays
       ORDER BY totalAmount DESC;
-            ;
     parameters:
       nodeIds: "{{ item.cyclePath }}"
   register: cycle_fast_output
