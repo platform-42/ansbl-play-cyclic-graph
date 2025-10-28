@@ -8,9 +8,9 @@
     label: Account
     property: entity_name
     state: PRESENT
-  register: database_constraint_add
+  register: entity_name
 
-- name: print database_constraint
+- name: print entity_name constraint
   ansible.builtin.debug:
-    var: database_constraint_add.constraint
+    var: entity_name.constraint
 
