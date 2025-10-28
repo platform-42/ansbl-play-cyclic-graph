@@ -14,9 +14,10 @@
     - name: detect cycle_candidates     
       ansible.builtin.include_tasks: tasks/detect/candidates.yml
 
-    - name: print
-      ansible.builtin.debug:
-        var: cycle_candidates
+    - name: detect fast_cycles      
+      ansible.builtin.include_tasks: tasks/detect/fastcycles.yml
+
+
     
 
 
