@@ -7,6 +7,8 @@
 # Simulation money laundering
 Build graph based on accounts (nodes) and transactions (edges)
 
+---
+
 ## Populate graph
 * cyclic.yml -> playbook to populate graph
 * cyclic.sh -> shell script to launch cyclic.yml playbook
@@ -15,6 +17,9 @@ Build graph based on accounts (nodes) and transactions (edges)
 * detect.yml -> playbook to detect suspicious transactions
 * detect.sh -> shell script to lunch detect.yml playbook
 
+---
+
+## Detection funnel 
 Detect play is implemented as a analytic funnel.
 So: 
 - output Phase I -> input Phase II
@@ -22,6 +27,6 @@ So:
 - output Phase III -> input Phase IV
 
 * Phase I -> determine all cyclic accounts with hop-count between 2 and 6
-* Phase II -> reduce to account with quick turnaroud
-* Phase III -> check weight and amount
-* Phase IV -> report results
+* Phase II -> reduce to accounts with quick turnaroud (<= 3 days)
+* Phase III -> check frequency and amount
+* Phase IV -> report results (e.g. Label nodes as SUSPECT)
