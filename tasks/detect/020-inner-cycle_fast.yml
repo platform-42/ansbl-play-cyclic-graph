@@ -41,4 +41,4 @@
 
 - name: print
   ansible.builtin.debug:
-    var: cycle_fast_output
+    var: cycle_fast_output.query_read.cypher_query_inline
