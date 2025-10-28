@@ -10,15 +10,15 @@
     - name: cleanup graph database      
       ansible.builtin.include_tasks: tasks/database/database.yml
 
-    - name: add vertex constraints      
-      ansible.builtin.include_tasks: tasks/database/constraints.yml
+#    - name: add vertex constraints      
+#      ansible.builtin.include_tasks: tasks/database/constraints.yml
   
     - name: create banking accounts
       ansible.builtin.include_tasks: tasks/vertices/accounts.yml
       loop: "{{ accounts }}"
 
-    - name: create suspect accounts
-      ansible.builtin.include_tasks: tasks/vertices/suspect.yml
+#    - name: create suspect accounts
+#      ansible.builtin.include_tasks: tasks/vertices/suspect.yml
 
     - name: create banking transactions
       ansible.builtin.include_tasks: tasks/edges/transactions.yml
