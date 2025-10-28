@@ -27,8 +27,8 @@
         reduce(total=0, t IN relationships(p) | total + t.amount) AS totalAmount,
         [r IN relationships(p) | r.timestamp] AS timestamps
       ORDER BY totalAmount DESC;
-  params:
-    nodeIds: "{{ item.cyclePath }}"
+    params:
+      nodeIds: "{{ item.cyclePath }}"
   register: fast_cycle_output
 
 - name: print
