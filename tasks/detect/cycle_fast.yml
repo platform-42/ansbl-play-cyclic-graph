@@ -13,10 +13,8 @@
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
     cypher: |
-      // use the path discovered in step 1
-      WITH {{ item.cyclePath | to_json }} AS nodeIds
       MATCH p=(a:Account)-[:TRANSACTION*2..6]->(a)
-      WHERE a.id IN nodeIds
+      WHERE a.id IN $nodeIds
       WITH p,
            [r IN relationships(p) | datetime(r.timestamp)] AS times,
            a
@@ -29,6 +27,8 @@
         reduce(total=0, t IN relationships(p) | total + t.amount) AS totalAmount,
         [r IN relationships(p) | r.timestamp] AS timestamps
       ORDER BY totalAmount DESC;
+  params:
+    nodeIds: "{{ item.cyclePath }}"
   register: fast_cycle_output
 
 - name: print
