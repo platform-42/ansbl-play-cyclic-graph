@@ -1,10 +1,10 @@
 ---
 - name: all_cycles
-  set_fact: 
+  ansible.builtin.set_fact: 
     cycle_fast_input: "{{ cycle_candidates_output.query_read.cypher_response }}"
 
 - name: "Detect fast cycles within previously detected cycles"
-  platform42.neo4j.query:
+  platform42.neo4j.query_read:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
     username: "{{ NEO4J_USERNAME }}"
