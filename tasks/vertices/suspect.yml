@@ -1,0 +1,16 @@
+---
+- name: "create account:{{ item.name }}"
+  platform42.neo4j.label:
+    neo4j_uri: "{{ NEO4J_URI }}"
+    database: "{{ NEO4J_DATABASE }}"
+    username: "{{ NEO4J_USERNAME }}"
+    password: "{{ NEO4J_PASSWORD }}"
+    base_label: Account
+    entity_name: A4
+    label: Suspect
+    state: PRESENT
+  register: suspect
+
+- name: print suspect label
+  ansible.builtin.debug:
+    var: suspect.label

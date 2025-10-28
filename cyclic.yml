@@ -16,7 +16,10 @@
     - name: create banking accounts
       ansible.builtin.include_tasks: tasks/vertices/accounts.yml
       loop: "{{ accounts }}"
-      
+
+    - name: create suspect accounts
+      ansible.builtin.include_tasks: tasks/vertices/suspect.yml
+
     - name: create banking transactions
       ansible.builtin.include_tasks: tasks/edges/transactions.yml
       loop: "{{ transactions }}"
