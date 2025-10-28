@@ -8,7 +8,7 @@
     - name: detect cycle_candidates     
       ansible.builtin.include_tasks: tasks/detect/010-cycle_candidates.yml
 
-#    - name: detect fast_cycles      
-#      ansible.builtin.include_tasks: tasks/detect/020-cycle_fast.yml
+    - name: detect fast_cycles      
+      ansible.builtin.include_tasks: tasks/detect/020-cycle_fast.yml
 
 
