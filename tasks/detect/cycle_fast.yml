@@ -4,9 +4,6 @@
     cycle_fast_input: "{{ cycle_candidates_output.query_read.cypher_response }}"
 
 - name: "Detect fast cycles within previously detected cycles"
-  loop: "{{ cycle_fast_input}}"
-  loop_control:
-    label: "{{ item.startAccount }}"
   platform42.neo4j.query:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
@@ -26,9 +23,13 @@
         length(p) AS hops,
         reduce(total=0, t IN relationships(p) | total + t.amount) AS totalAmount,
         [r IN relationships(p) | r.timestamp] AS timestamps
-      ORDER BY totalAmount DESC;
-    params:
+      ORDER BY totalAmount DESC
+      ;
+    parameters:
       nodeIds: "{{ item.cyclePath }}"
+  loop: "{{ cycle_fast_input}}"
+  loop_control:
+    label: "{{ item.startAccount }}"
   register: fast_cycle_output
 
 - name: print
