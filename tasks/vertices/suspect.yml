@@ -1,5 +1,5 @@
 ---
-- name: "create suspect label on account:{{ item.name }}"
+- name: "create suspect label on account:A4"
   platform42.neo4j.label:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
@@ -15,7 +15,7 @@
   ansible.builtin.debug:
     var: suspect.label
 
-- name: "Remove suspect label from account:{{ item.name }}"
+- name: "Remove suspect label from account:A4"
   platform42.neo4j.label:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
