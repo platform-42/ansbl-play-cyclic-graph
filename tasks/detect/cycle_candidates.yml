@@ -13,5 +13,5 @@
         length(p) AS hops,
         reduce(total = 0, t IN relationships(p) | total + t.amount) AS totalAmount
       ORDER BY totalAmount DESC;
-  register: cycle_candidates
+  register: cycle_candidates_output
 

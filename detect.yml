@@ -12,10 +12,10 @@
   # RETURN statement produces output for 4 paths
   #
     - name: detect cycle_candidates     
-      ansible.builtin.include_tasks: tasks/detect/candidates.yml
+      ansible.builtin.include_tasks: tasks/detect/cycle_candidates.yml
 
     - name: detect fast_cycles      
-      ansible.builtin.include_tasks: tasks/detect/fastcycles.yml
+      ansible.builtin.include_tasks: tasks/detect/cycle_fast.yml
 
 
     
