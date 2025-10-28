@@ -5,17 +5,11 @@
     - vars/settings/local/settings.yml
 
   tasks:
-  #
-  # so MATCH creates a list of paths p of all accounts, where
-  # startAccount is equal to endAccount and the number of hops (TRANSACTIONS) is between 2 and 6
-  # MATCH returns a "pipeline" of matched paths (in our case 4)
-  # RETURN statement produces output for 4 paths
-  #
     - name: detect cycle_candidates     
-      ansible.builtin.include_tasks: tasks/detect/cycle_candidates.yml
+      ansible.builtin.include_tasks: tasks/detect/010-cycle_candidates.yml
 
     - name: detect fast_cycles      
-      ansible.builtin.include_tasks: tasks/detect/cycle_fast.yml
+      ansible.builtin.include_tasks: tasks/detect/020-cycle_fast.yml
 
 
     
