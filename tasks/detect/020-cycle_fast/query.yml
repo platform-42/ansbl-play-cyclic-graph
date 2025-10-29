@@ -41,7 +41,7 @@
 
 - name: "Print captured output"
   ansible.builtin.debug:
-    var: cycle_path_phase_2
+    var: cycle_path_phase_2.cyclePath
 
 - name: "Append captured output"
   set_fact:
