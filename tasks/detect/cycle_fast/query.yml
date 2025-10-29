@@ -45,4 +45,8 @@
 
 - name: print
   ansible.builtin.debug:
+    var: cycle_fast_output.query_read.cypher_response
+
+- name: print
+  ansible.builtin.debug:
     var: cycle_fast_output.query_read.cypher_params
