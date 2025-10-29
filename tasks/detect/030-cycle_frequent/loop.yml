@@ -3,9 +3,9 @@
 # start of phase III - frequent cycle
 #
 - name: "Iterate candidates"
-  ansible.builtin.set_fact: 
-    cycle_paths_phase_3: "{{ cycle_paths_phase_2 }}"
+  ansible.builtin.set_fact:
+    cycle_paths_phase_3: []
 
 - name: "Determine whether frequent cycle"
   ansible.builtin.include_tasks: tasks/detect/030-cycle_frequent/query.yml
-  loop: "{{ cycle_paths_phase_3 }}"
+  loop: "{{ cycle_paths_phase_2 }}"
