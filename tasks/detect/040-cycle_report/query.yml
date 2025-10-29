@@ -1,32 +1,20 @@
 ---
-- name: "iterator"
-  ansible.builtin.debug:
-    var: item
+- name: Build list of nodes from this cyclePath
+  set_fact:
+    suspect_nodes: "{{ item.cyclePath | flatten }}"
 
-- name: Build list of suspect nodes
-  ansible.builtin.set_fact:
-    suspect_nodes: >-
-      {{ item
-       | selectattr('occurrences', '>', 2)
-       | selectattr('totalAmount', '>', 10000)
-       | map(attribute='cyclePath')
-       | flatten
-       | unique
-       | list 
-       }}
-
-- name: "iterator"
-  ansible.builtin.debug:
-    var: suspect_nodes
-
-- name: Label each suspect node individually
+- name: Label each node in the current suspect cycle
   platform42.neo4j.label:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
     base_label: Account
-    entity_name: "{{ item }}"
+    entity_name: "{{ item_node }}"
     label: Suspect
     state: PRESENT
-  loop: "{{ suspect_nodes}}"
+  loop: "{{ suspect_nodes }}"
+  loop_control:
+    loop_var: item_node
+  when: 
+    - suspect_nodes | length > 0
