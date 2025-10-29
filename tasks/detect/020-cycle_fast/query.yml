@@ -43,9 +43,13 @@
   ansible.builtin.debug:
     var: cycle_path
 
+- name: "YCLE_PIETH"
+  ansible.builtin.set_fact:
+    cycle_path_output: "{{ cycle_paths.query_read.cypher_response }}"
+
 - name: append cycle path
   set_fact:
-    cycle_paths_output: "{{ (cycle_paths_output | default([])) + cycle_path }}"
+    cycle_paths_output: "{{ (cycle_paths_output | default([])) + cycle_path_output }}"
   when: 
-    - cycle_path is defined 
-    - cycle_path | length > 0
+    - cycle_path_output is defined 
+    - cycle_path_output | length > 0
