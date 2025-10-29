@@ -1,0 +1,24 @@
+--- 
+- name: "???"
+  ansible.builtin.debug:
+    var: item.cyclePath
+
+- name: "Find repeated cycles for {{ suspicious_item.startAccount }}"
+  platform42.neo4j.query_read:
+    query: |
+      MATCH p=(a:Account)-[r:TRANSACTION*2..6]->(a)
+      WHERE [x IN nodes(p) | x.entity_name] = $nodeIds
+      WITH
+        [x IN nodes(p) | x.entity_name] AS cyclePath,
+        collect(DISTINCT date(datetime(r.timestamp))) AS days,
+        count(p) AS occurrences,
+        reduce(total=0, rel IN relationships(p) | total + rel.amount) AS totalAmount
+      RETURN
+        cyclePath,
+        occurrences,
+        size(days) AS distinctDays,
+        totalAmount
+      ORDER BY occurrences DESC
+    parameters:
+      nodeIds: "{{ item.cyclePath }}"
+  register: repeated_cycle_result

@@ -16,5 +16,13 @@
         length(p) AS hops,
         reduce(total = 0, t IN relationships(p) | total + t.amount) AS totalAmount
       ORDER BY totalAmount DESC;
-  register: cycle_candidates_output
+  register: cycle_paths
+
+- name: "create next path iterator"
+  ansible.builtin.set_fact:
+    cycle_paths_output: "{{ cycle_paths.query_read.cypher_response.cycle_path }}"
+
+- name: "print next path iterator"
+  ansible.builtin.debug:
+    var: cycle_path_output
 

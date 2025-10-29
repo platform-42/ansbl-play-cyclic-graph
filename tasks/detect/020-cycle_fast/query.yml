@@ -37,7 +37,11 @@
       ORDER BY totalAmount DESC;
     parameters:
       nodeIds: "{{ item.cyclePath }}"
-  register: cycle_fast_output
+  register: cycle_path
+
+- name:
+  ansible.builtin.set_fact:
+    cycle_path_output: "{{ cycle_paths.query_read.cypher_response }}"
 
 - name: print
   ansible.builtin.debug:

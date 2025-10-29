@@ -4,8 +4,8 @@
 #
 - name: "Iterate candidates"
   ansible.builtin.set_fact: 
-    cycle_fast_input: "{{ cycle_candidates_output.query_read.cypher_response }}"
+    cycle_path_input: "{{ cycle_path_output }}"
 
 - name: "Determine whether fast cycle"
   ansible.builtin.include_tasks: tasks/detect/cycle_fast/query.yml
-  loop: "{{ cycle_fast_input}}"
+  loop: "{{ cycle_path_input }}"

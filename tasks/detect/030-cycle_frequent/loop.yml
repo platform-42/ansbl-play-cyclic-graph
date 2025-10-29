@@ -4,8 +4,8 @@
 #
 - name: "Iterate candidates"
   ansible.builtin.set_fact: 
-    cycle_frequent_input: "{{ ??? }}"
+    cycle_candidates_input: "{{ cycle_candidates_output ??? }}"
 
-- name: "Determine whether fast cycle"
+- name: "Determine whether frequent cycle"
   ansible.builtin.include_tasks: tasks/detect/cycle_frequent/query.yml
-  loop: "{{ cycle_frequent_input }}"
+  loop: "{{ cycle_candidates_input }}"
