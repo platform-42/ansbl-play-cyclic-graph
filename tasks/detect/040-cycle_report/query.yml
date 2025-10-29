@@ -1,12 +1,6 @@
 ---
-- name: Skip cycles below thresholds
-  ansible.builtin.meta: end_task
-  when: 
-    - item.occurrences | int <= 1
-    - item.totalAmount | float <= 3000
-
 - name: Build list of nodes from this cyclePath
-  set_fact:
+  ansible.builtin.set_fact:
     suspect_nodes: "{{ item.cyclePath | flatten }}"
 
 - name: Label each node in the current suspect cycle

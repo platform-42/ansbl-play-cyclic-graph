@@ -13,3 +13,6 @@
 - name: "Determine whether frequent cycle"
   ansible.builtin.include_tasks: tasks/detect/040-cycle_report/query.yml
   loop: "{{ cycle_paths_phase_3 }}"
+  when: 
+    - item.occurrences | int > 1
+    - item.totalAmount | float > 3000
