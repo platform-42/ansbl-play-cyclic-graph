@@ -1,0 +1,11 @@
+---
+#
+# start of phase IV - reporting
+#
+- name: "Iterate candidates"
+  ansible.builtin.set_fact: 
+    cycle_paths_phase_4: "{{ cycle_paths_phase_3 }}"
+
+- name: "Determine whether frequent cycle"
+  ansible.builtin.include_tasks: tasks/detect/040-cycle_frequent/query.yml
+  loop: "{{ cycle_paths_phase_4 }}"
