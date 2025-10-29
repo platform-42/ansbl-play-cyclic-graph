@@ -27,11 +27,11 @@ transactions:
   - from: A6
     to: A7
     amount: 1170
-    timestamp: "2025-10-02T09:40:00Z"
+    timestamp: "2025-10-03T09:40:00Z"
   - from: A7
     to: A4
     amount: 1160
-    timestamp: "2025-10-02T10:00:00Z"
+    timestamp: "2025-10-04T10:00:00Z"
 
   # Cycle 3: A8 ↔ A9
   - from: A8
@@ -41,7 +41,7 @@ transactions:
   - from: A9
     to: A8
     amount: 290
-    timestamp: "2025-10-03T08:30:00Z"
+    timestamp: "2025-10-06T08:30:00Z"
 
   # Linear chain (non-cyclic)
   - from: A10
@@ -51,11 +51,11 @@ transactions:
   - from: A11
     to: A12
     amount: 150
-    timestamp: "2025-10-04T09:10:00Z"
+    timestamp: "2025-10-06T09:10:00Z"
   - from: A12
     to: A13
     amount: 100
-    timestamp: "2025-10-04T09:20:00Z"
+    timestamp: "2025-10-08T09:20:00Z"
 
   # Cross-links (noise)
   - from: A3
@@ -65,7 +65,7 @@ transactions:
   - from: A6
     to: A9
     amount: 700
-    timestamp: "2025-10-02T11:00:00Z"
+    timestamp: "2025-10-06T11:00:00Z"
 
   # Cycle 4: A14 ↔ A15
   - from: A14
