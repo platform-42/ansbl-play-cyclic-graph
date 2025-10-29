@@ -45,7 +45,7 @@
 
 - name: "YCLE_PIETH"
   ansible.builtin.set_fact:
-    cycle_path_output: "{{ cycle_paths.query_read.cypher_response }}"
+    cycle_path_output: "{{ cycle_path.query_read.cypher_response }}"
 
 - name: append cycle path
   set_fact:
