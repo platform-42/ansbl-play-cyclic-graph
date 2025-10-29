@@ -76,3 +76,16 @@ transactions:
     to: A14
     amount: 260
     timestamp: "2025-10-28T09:10:00Z"
+
+  - from: A1
+    to: A2
+    amount: 500
+    timestamp: "2025-10-22T09:00:00Z"
+  - from: A2
+    to: A3
+    amount: 480
+    timestamp: "2025-10-23T09:30:00Z"
+  - from: A3
+    to: A1
+    amount: 470
+    timestamp: "2025-10-25T10:00:00Z"
