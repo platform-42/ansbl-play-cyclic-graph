@@ -9,11 +9,20 @@
       MATCH p=(a:Account)-[:TRANSACTION*2..6]->(a)
       WHERE [x IN nodes(p) | x.entity_name] = $nodeIds
       WITH 
-        [x IN nodes(p) | x.entity_name] AS cyclePath,
+        p, 
+        [x IN nodes(p) | x.entity_name] AS cyclePath
+      UNWIND 
+        relationships(p) AS rel
+      WITH 
+        cyclePath, 
         collect(DISTINCT date(datetime(rel.timestamp))) AS days,
-        count(p) AS occurrences,
-        reduce(total=0, rel IN relationships(p) | total + rel.amount) AS totalAmount
-      RETURN cyclePath, occurrences, size(days) AS distinctDays, totalAmount
+        count(DISTINCT p) AS occurrences,
+        sum(rel.amount) AS totalAmount
+      RETURN 
+        cyclePath, 
+        occurrences, 
+        size(days) AS distinctDays, 
+        totalAmount
       ORDER BY occurrences DESC
     parameters:
       nodeIds: "{{ item.cyclePath }}"
