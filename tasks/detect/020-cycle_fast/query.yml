@@ -35,15 +35,15 @@
       nodeIds: "{{ item.cyclePath }}"
   register: cycle_path
 
-- name: "YCLE_PIETH"
+- name: "Capture output"
   ansible.builtin.set_fact:
     cycle_path_phase_2: "{{ cycle_path.query_read.cypher_response }}"
 
-- name:
+- name: "Print captured output"
   ansible.builtin.debug:
     var: cycle_path_phase_2
 
-- name: append cycle path
+- name: "Append captured output"
   set_fact:
     cycle_paths_phase_2: "{{ (cycle_paths_phase_2 | default([])) + cycle_path_phase_2 }}"
   when: 
