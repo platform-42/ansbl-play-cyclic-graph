@@ -39,17 +39,13 @@
       nodeIds: "{{ item.cyclePath }}"
   register: cycle_path
 
-- name: "CYCLE PIETH"
-  ansible.builtin.debug:
-    var: cycle_path
-
 - name: "YCLE_PIETH"
   ansible.builtin.set_fact:
-    cycle_path_output: "{{ cycle_path.query_read.cypher_response }}"
+    cycle_path_phase_2: "{{ cycle_path.query_read.cypher_response }}"
 
 - name: append cycle path
   set_fact:
-    cycle_paths_output: "{{ (cycle_paths_output | default([])) + cycle_path_output }}"
+    cycle_paths_phase_2: "{{ (cycle_paths_phase_2 | default([])) + cycle_path_phase_2 }}"
   when: 
-    - cycle_path_output is defined 
-    - cycle_path_output | length > 0
+    - cycle_path_phase_2 is defined 
+    - cycle_path_phase_2 | length > 0

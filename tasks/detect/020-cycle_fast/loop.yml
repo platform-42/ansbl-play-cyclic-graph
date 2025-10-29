@@ -2,10 +2,6 @@
 #
 # start of phase II - fast cycle
 #
-- name: "Candidates iterator"
-  ansible.builtin.set_fact: 
-    cycle_paths_input: "{{ cycle_paths_output }}"
-
 - name: "Determine whether fast cycle"
   ansible.builtin.include_tasks: tasks/detect/020-cycle_fast/query.yml
-  loop: "{{ cycle_paths_input }}"
+  loop: "{{ cycle_paths_phase_1 }}"
