@@ -25,7 +25,7 @@
         totalAmount,
         reduce(minT = head(times), t IN times | CASE WHEN t < minT THEN t ELSE minT END) AS minTime,
         reduce(maxT = head(times), t IN times | CASE WHEN t > maxT THEN t ELSE maxT END) AS maxTime
-      WHERE duration.between(minTime, maxTime).days <= 30
+      WHERE duration.between(minTime, maxTime).days <= 3
       RETURN 
         startAccount,
         cyclePath,
