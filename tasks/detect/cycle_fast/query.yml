@@ -11,10 +11,10 @@
     password: "{{ NEO4J_PASSWORD }}"
     query: |
       MATCH p=(a:Account)-[r:TRANSACTION*2..6]->(a)
-      WHERE all(n IN nodes(p) WHERE n.id IN $nodeIds)
+      WHERE all(n IN nodes(p) WHERE n.entity_name IN $nodeIds)
       WITH 
-        a.id AS startAccount,
-        [x IN nodes(p) | x.id] AS cyclePath,
+        a.entity_name AS startAccount,
+        [x IN nodes(p) | x.entity_name] AS cyclePath,
         [rel IN relationships(p) | datetime(rel.timestamp)] AS times,
         length(p) AS hops,
         reduce(total=0, rel IN relationships(p) | total + rel.amount) AS totalAmount
