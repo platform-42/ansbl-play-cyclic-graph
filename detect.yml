@@ -11,6 +11,6 @@
     - name: "Phase II - detect fast_cycles"     
       ansible.builtin.include_tasks: tasks/detect/020-cycle_fast/loop.yml
 
-#    - name: "Phase III - Detect repeated or frequent cycles"
-#      ansible.builtin.include_tasks: tasks/detect/030-cycle_frequent/loop.yml
+    - name: "Phase III - Detect repeated or frequent cycles"
+      ansible.builtin.include_tasks: tasks/detect/030-cycle_frequent/loop.yml
 

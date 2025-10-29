@@ -39,10 +39,9 @@
       nodeIds: "{{ item.cyclePath }}"
   register: cycle_path
 
-- name:
-  ansible.builtin.set_fact:
-    cycle_path_output: "{{ cycle_path.query_read.cypher_response }}"
-
-- name: print *****
-  ansible.builtin.debug:
-    var: cycle_path_output
+- name: append cycle path
+  set_fact:
+    cycle_paths_output: "{{ (cycle_paths_output | default([])) + cycle_path }}"
+  when: 
+    - cycle_path is defined 
+    - cycle_path | length > 0
