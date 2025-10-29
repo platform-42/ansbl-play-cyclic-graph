@@ -1,4 +1,8 @@
 ---
+- name: "iterator"
+  ansible.builtin.debug:
+    var: item
+
 - name: Build list of suspect nodes
   ansible.builtin.set_fact:
     suspect_nodes: >-
