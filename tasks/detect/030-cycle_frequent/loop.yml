@@ -7,5 +7,5 @@
     cycle_paths_phase_3: "{{ cycle_paths_phase_2 }}"
 
 - name: "Determine whether frequent cycle"
-  ansible.builtin.include_tasks: tasks/detect/cycle_frequent/query.yml
+  ansible.builtin.include_tasks: tasks/detect/030-cycle_frequent/query.yml
   loop: "{{ cycle_paths_phase_3 }}"
