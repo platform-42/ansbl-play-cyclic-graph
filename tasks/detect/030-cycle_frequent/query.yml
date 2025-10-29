@@ -1,6 +1,10 @@
 --- 
-- name: "Find repeated cycles for {{ suspicious_item.startAccount }}"
+- name: "Find repeated cycles for {{ item.startAccount }}"
   platform42.neo4j.query_read:
+    neo4j_uri: "{{ NEO4J_URI }}"
+    database: "{{ NEO4J_DATABASE }}"
+    username: "{{ NEO4J_USERNAME }}"
+    password: "{{ NEO4J_PASSWORD }}"
     query: |
       MATCH p=(a:Account)-[r:TRANSACTION*2..6]->(a)
       WHERE [x IN nodes(p) | x.entity_name] = $nodeIds
