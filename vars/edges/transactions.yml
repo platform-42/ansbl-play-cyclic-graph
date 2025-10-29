@@ -36,7 +36,7 @@ transactions:
   # Cycle 3: A8 ↔ A9
   - from: A8
     to: A9
-    amount: 300
+    amount: 900
     timestamp: "2025-10-03T08:00:00Z"
   - from: A9
     to: A8
@@ -64,13 +64,13 @@ transactions:
     timestamp: "2025-10-01T11:00:00Z"
   - from: A6
     to: A9
-    amount: 700
+    amount: 6700
     timestamp: "2025-10-06T11:00:00Z"
 
   # Cycle 4: A14 ↔ A15
   - from: A14
     to: A15
-    amount: 250
+    amount: 1250
     timestamp: "2025-10-05T09:00:00Z"
   - from: A15
     to: A14
