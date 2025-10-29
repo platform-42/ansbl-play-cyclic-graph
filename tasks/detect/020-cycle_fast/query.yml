@@ -41,8 +41,8 @@
 
 - name:
   ansible.builtin.set_fact:
-    cycle_path_output: "{{ cycle_paths.query_read.cypher_response }}"
+    cycle_path_output: "{{ cycle_paths.query_read.cypher_response.cycle_path }}"
 
-- name: print
+- name: print *****
   ansible.builtin.debug:
-    var: cycle_fast_output.query_read.cypher_response
+    var: cycle_path_output
