@@ -1,1 +1,22 @@
 ---
+- name: Build list of suspect nodes
+  ansible.builtin.set_fact:
+    suspect_nodes: >-
+      {{ item.cyclePath
+         | map(attribute='cyclePath')
+         | flatten
+         | unique
+         | list 
+         }}
+
+- name: Label suspect nodes
+  platform42.neo4j.label:
+    neo4j_uri: "{{ NEO4J_URI }}"
+    database: "{{ NEO4J_DATABASE }}"
+    username: "{{ NEO4J_USERNAME }}"
+    password: "{{ NEO4J_PASSWORD }}"
+    label: Suspect
+    nodes: "{{ item }}"
+  loop: "{{ suspect_nodes }}"
+  when: 
+    - suspect_nodes | length > 0
