@@ -7,7 +7,7 @@
     password: "{{ NEO4J_PASSWORD }}"
     query: |
       MATCH p=(a:Account)-[:TRANSACTION*2..6]->(a)
-      WHERE [x IN nodes(p) | x.entity_name] = ['A4', 'A5', 'A6', 'A7', 'A4']
+      WHERE [x IN nodes(p) | x.entity_name] = $nodeIds
       WITH 
         [x IN nodes(p) | x.entity_name] AS cyclePath,
         collect(DISTINCT date(datetime(rel.timestamp))) AS days,
