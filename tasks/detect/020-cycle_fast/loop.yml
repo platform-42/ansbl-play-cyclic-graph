@@ -7,5 +7,5 @@
     cycle_paths_input: "{{ cycle_paths_output }}"
 
 - name: "Determine whether fast cycle"
-  ansible.builtin.include_tasks: tasks/detect/cycle_fast/query.yml
+  ansible.builtin.include_tasks: tasks/detect/020-cycle_fast/query.yml
   loop: "{{ cycle_paths_input }}"
