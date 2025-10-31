@@ -5,14 +5,17 @@
     - vars/settings/local/settings.yml
 
   tasks:
-    - name: "Phase I - detect cycle_candidates"     
+    - name: install platform42.neo4j dependencies
+      ansible.builtin.include_tasks: tasks/dependencies/neo4j.yml
+
+    - name: Phase I - detect cycle_candidates    
       ansible.builtin.include_tasks: tasks/detect/010-cycle_candidates/query.yml
 
-    - name: "Phase II - detect fast_cycles"     
+    - name: Phase II - detect fast_cycles
       ansible.builtin.include_tasks: tasks/detect/020-cycle_fast/loop.yml
 
-    - name: "Phase III - detect repeated or frequent cycles"
+    - name: Phase III - detect repeated or frequent cycles
       ansible.builtin.include_tasks: tasks/detect/030-cycle_frequent/loop.yml
 
-    - name: "Phase IV - filter based on frequency and amount "
+    - name: Phase IV - filter based on frequency and amount
       ansible.builtin.include_tasks: tasks/detect/040-cycle_report/loop.yml

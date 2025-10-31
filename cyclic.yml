@@ -6,11 +6,14 @@
     - vars/vertices/accounts.yml
     - vars/edges/transactions.yml
 
-  tasks:    
-    - name: cleanup graph database      
+  tasks:
+    - name: install platform42.neo4j dependencies
+      ansible.builtin.include_tasks: tasks/dependencies/neo4j.yml
+
+    - name: cleanup graph database
       ansible.builtin.include_tasks: tasks/database/database.yml
 
-    - name: add vertex constraints      
+    - name: add vertex constraints
       ansible.builtin.include_tasks: tasks/database/constraints.yml
   
     - name: create banking accounts
