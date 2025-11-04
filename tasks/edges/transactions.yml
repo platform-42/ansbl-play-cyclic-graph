@@ -20,7 +20,7 @@
       timestamp: 
         value: "{{ item.timestamp }}"
         type: datetime
-    unique_key: datatime
+    unique_key: datetime
   register: transaction
 
 - name: print TRANSACTION relationship stats
