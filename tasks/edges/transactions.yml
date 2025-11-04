@@ -20,9 +20,10 @@
       timestamp: 
         value: "{{ item.timestamp }}"
         type: datetime
+    unique_key: datatime
   register: transaction
 
-- name: print TRACK relationship stats
+- name: print TRANSACTION relationship stats
   ansible.builtin.debug:
     var: transaction.edge
 

@@ -30,3 +30,14 @@ So:
 * Phase II -> reduce to accounts with quick turnaroud (<= 3 days)
 * Phase III -> check frequency and amount
 * Phase IV -> report results (e.g. Label nodes as SUSPECT)
+
+
+git checkout main
+
+git branch -d development
+git push origin --delete development
+
+
+
+git tag v2.7.0
+git push origin v1.6.0
