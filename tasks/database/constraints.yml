@@ -6,7 +6,7 @@
     username: "{{ NEO4J_USERNAME }}"
     password: "{{ NEO4J_PASSWORD }}"
     label: Account
-    property: entity_name
+    property_key: entity_name
     state: PRESENT
   register: entity_name
 
