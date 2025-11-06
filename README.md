@@ -36,7 +36,7 @@ git checkout main
 
 git branch -d development
 git push origin --delete development
-
+git fetch --all
 
 
 git tag v2.7.0
