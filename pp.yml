@@ -1,0 +1,13 @@
+- name: PP's SA world
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: "PP's great discovery"
+      imposter.sa.pp:
+        banner: "hello world"
+      register: result
+
+    - name: "print result"
+      ansible.builtin.debug:
+        var: result

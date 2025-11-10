@@ -38,6 +38,21 @@ git branch -d development
 git push origin --delete development
 git fetch --all
 
+git checkout main
+sh build.sh -t v3.1.0 
+git tag v3.1.0
+git push origin v3.1.0
+git branch -d development
+git push origin --delete development
 
-git tag v2.7.0
-git push origin v1.6.0
+
+#!/usr/bin/python
+
+from ansible.module_utils.basic import AnsibleModule
+
+def main():
+    module = AnsibleModule(argument_spec={})
+    module.exit_json(changed=False, msg="Hello, world!")
+
+if __name__ == "__main__":
+    main()
