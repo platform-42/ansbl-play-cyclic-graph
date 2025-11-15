@@ -39,9 +39,9 @@ git push origin --delete development
 git fetch --all
 
 git checkout main
-sh build.sh -t v3.1.0 
-git tag v3.1.0
-git push origin v3.1.0
+sh build.sh -t v4.1.0 
+git tag v4.1.0
+git push origin v4.1.0
 git branch -d development
 git push origin --delete development
 
