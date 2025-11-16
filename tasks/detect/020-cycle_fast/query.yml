@@ -32,7 +32,10 @@
         duration.between(minTime, maxTime).days AS durationDays
       ORDER BY totalAmount DESC;
     parameters:
-      nodeIds: "{{ item.cyclePath }}"
+      nodeIds: 
+        type: list
+        value: "{{ item.cyclePath }}"
+        element_type: str
   register: cycle_path
 
 - name: "Capture output"
