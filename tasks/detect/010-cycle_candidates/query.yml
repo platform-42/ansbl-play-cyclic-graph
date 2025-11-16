@@ -3,7 +3,7 @@
 # start of phase I - detect all cyclic paths
 #
 - name: "cyclic paths"
-  platform42.neo4jquery:
+  platform42.neo4j.query:
     neo4j_uri: "{{ NEO4J_URI }}"
     database: "{{ NEO4J_DATABASE }}"
     username: "{{ NEO4J_USERNAME }}"
