@@ -25,7 +25,10 @@
         totalAmount
       ORDER BY occurrences DESC
     parameters:
-      nodeIds: "{{ item.cyclePath }}"
+      nodeIds: 
+        type: list
+        value: "{{ item.cyclePath }}"
+        element_type: str
   register: cycle_path
 
 - name: "Capture output"
