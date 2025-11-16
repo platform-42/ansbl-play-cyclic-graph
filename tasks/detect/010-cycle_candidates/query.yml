@@ -20,6 +20,6 @@
 
 - name: "create next path iterator"
   ansible.builtin.set_fact:
-    cycle_paths_phase_1: "{{ cycle_paths.query_read.cypher_response }}"
+    cycle_paths_phase_1: "{{ cycle_paths.query.cypher_response }}"
 
 
